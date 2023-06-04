@@ -1,0 +1,73 @@
+<!doctype html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="validar.js"></script>
+  <title>Formulario de Registro</title>
+  <link href="estilos.css" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+  <div class="group">
+    <form method="POST" action="registro.php" onsubmit="return validarFormulario()">
+
+      <div id="registroExitoso" class="alert alert-success" style="display: none;">
+        Registro completado con éxito
+      </div>
+
+      <label for="nombre">Nombre<span><em>(requerido)</em></span></label>
+      <input id="nombre" type="text" name="nombre" class="form-input" required />
+      <div id="error-nombre" class="alert alert-danger" style="display: none;">Por favor ingresa un nombre válido(sólo
+        letras)</div>
+
+      <label for="apellido">Primer apellido<span><em>(requerido)</em></span></label>
+      <input id="apellido1" type="text" name="apellido1" class="form-input" required />
+      <div id="error-apellido1" class="alert alert-danger" style="display: none;">Por favor ingresa un primer apellido
+        válido(sólo letras)</div>
+
+      <label for="apellido">Segundo apellido<span><em>(requerido)</em></span></label>
+      <input id="apellido2" type="text" name="apellido2" class="form-input" required />
+      <div id="error-apellido2" class="alert alert-danger" style="display: none;">Por favor ingresa un segundo apellido
+        válido(sólo letras)</div>
+
+      <label for="email">Email<span><em>(requerido)</em></span></label>
+      <input id="email" type="email" name="email" class="form-input" required />
+      <div id="error-email" class="alert alert-danger" style="display: none;">Por favor ingresa un email válido</div>
+
+      <label for="login">Login<span><em>(requerido)</em></span></label>
+      <input id="login" type="text" name="login" class="form-input" required />
+      <div id="error-login" class="alert alert-danger" style="display: none;">El campo no puede estar vacío</div>
+
+      <label for="password">Contraseña:<span><em>(requerido)</em></span></label>
+      <input id="password" type="password" name="password" required />
+      <div id="error-password" class="alert alert-danger" style="display: none;">la contraseña debe ser entre 4 a 8
+        caracteres</div>
+
+      <input class="form-btn" name="submit" type="submit" value="Registrarse" />
+
+      <div class="button-group mt-4">
+        <button class="btnLimpiar" type="button" onclick="limpiarCampos()">Limpiar</button>
+        <button class="btnConsulta" id="consultaBtn" disabled
+          onclick="window.location.href='consulta.php'">Consultar</button>
+      </div>
+    </form>
+  </div>
+  <script>
+    window.onload = function () {
+      var urlParams = new URLSearchParams(window.location.search);
+      var registroExitoso = urlParams.get('registro');
+      if (registroExitoso === 'exitoso') {
+        var consultaBtn = document.getElementById('consultaBtn');
+        consultaBtn.disabled = false;
+
+        var mensaje = document.getElementById('registroExitoso');
+        mensaje.style.display = 'block';
+      }
+    };
+  </script>
+</body>
+
+</html>
